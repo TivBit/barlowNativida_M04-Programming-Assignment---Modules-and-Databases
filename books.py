@@ -9,8 +9,8 @@ Assignment: M04 Programming Assignment - Modules and Databases
 Chapter 16 Task: 16.8
 """
 
-from flask import flask
-application = flask.Flask(__name__)
+from flask import Flask
+application = Flask(__name__)
 
 
 class Book(): 
@@ -31,16 +31,14 @@ books = [
     Book("Small Gods", "Terry Pratchett", 1992)
     ]
 
+    
+    
+
 
 ######################## JSON
 
 import json
 
-"""
-with open("books2.json", "w") as toFile:
-    for b in books:
-        toFile.write(json.dumps({"author": b.author, "title": b.title, "year": b.year}) + "\n")
-"""
 
 with open("books2.json") as fromFile:
     data = []
@@ -51,6 +49,26 @@ with open("books2.json") as fromFile:
 def bookbag():
     with open("books2.json") as fromFile:
         for line in fromFile:
-            yield json.loads(line.strip())        
+            yield line.strip()
+            
+@application.route("/books/<year>")
+def bookbag_year(year):
+    with open("books2.json") as fromFile:
+        
+            def year(title, author, year):
+                
+            #Iterate through lines
+              for i, line in enumerate(fromFile):
+            
+                #Choose specific book year to print.
+                if year == year:
+                    print(line)
+                                    
+                else:
+                    return f"There are no books printed in the year {year}."
+                   
+            print(line)
+            yield "hello world"
+            
             
         
