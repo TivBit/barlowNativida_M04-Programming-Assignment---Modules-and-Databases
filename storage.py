@@ -9,7 +9,14 @@ Assignment: M04 Programming Assignment - Modules and Databases-Ch 16
 Chapter 16 Task: 16.8
 """
 
-from books import Book
+class Book(): 
+    def __init__(self, title, author, year):
+        self.title = title
+        self.author = author
+        self.year = year
+        
+    def __str__(self):
+        return f"{self.title} was written by {self.author} in {self.year}"
 
 books = [
     Book("The Weirdstone of Brisingamen", "Alan Garner", 1960),
@@ -21,42 +28,28 @@ books = [
 
 
 
-############## binary file
-
-import pickle
-
-with open("books.csv", "wb") as toFile:
-    pickle.dump(books, toFile)
-    
-
-with open("books.csv", "rb") as fromFile:
-    stuff = pickle.load(fromFile)
-    print(stuff[3])
-
-
-
 
 ############## SQLite
 
 import sqlite3 as sql
 
 db = sql.connect("books.db")
+curs = db.cursor()
 
 createQuery = "CREATE TABLE IF NOT EXISTS People(Name TEXT, Age INTEGER, Town TEXT);"
 
 db.execute(createQuery)
 
 for b in books:
-    insertQuery = "INSERT INTO Books(Author, Title, Year) VALUES(\"" + p.author + "\", " + p.title + ", \"" + str(p.year) + "\");"
+    insertQuery = "INSERT INTO Books(Title, Author, Year) VALUES(\"" + b.title + "\", " + b.author + ", \"" +str(b.year) + "\");"
     cursor = db.execute(insertQuery)
     if cursor.rowcount >= 0:
         print("added the data")
     else:
         print("there was an error")
         
-    
-    
-selectQuery = "SELECT author, title, year FROM Books WHERE title >= ___;" #<--ASK CHRIS!
+        
+selectQuery = "SELECT title, author, year FROM Books ORDER BY last_name ASC;"
 
 
 cursor = db.execute(selectQuery)
@@ -64,3 +57,5 @@ for row in cursor:
     print(row[0])
     
 db.close()
+
+
