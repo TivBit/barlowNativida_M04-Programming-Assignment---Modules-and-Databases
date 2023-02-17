@@ -29,7 +29,7 @@ books = [
     ]
 
 book_info = Book(year, author, year)
-print(Book)
+print(book_info)
 
 ############## SQLite
 db = sql.connect("books.db")
