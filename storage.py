@@ -8,6 +8,8 @@ SDEV 220 Spring 2023
 Assignment: M04 Programming Assignment - Modules and Databases-Ch 16
 Chapter 16 Task: 16.8
 """
+import sqlite3 as sql
+
 
 class Book(): 
     def __init__(self, title, author, year):
@@ -26,17 +28,14 @@ books = [
     Book("Small Gods", "Terry Pratchett", 1992)
     ]
 
-
-
+book_info = Book(year, author, year)
+print(Book)
 
 ############## SQLite
-
-import sqlite3 as sql
-
 db = sql.connect("books.db")
 curs = db.cursor()
 
-createQuery = "CREATE TABLE IF NOT EXISTS People(Name TEXT, Age INTEGER, Town TEXT);"
+createQuery = "CREATE TABLE IF NOT EXISTS People(Title TEXT, Author TEXT, Year INTEGER);"
 
 db.execute(createQuery)
 
